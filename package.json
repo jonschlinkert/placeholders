@@ -26,5 +26,20 @@
   "devDependencies": {
     "mocha": "*"
   },
-  "keywords": []
+  "keywords": [
+    "dot",
+    "dot-notation",
+    "file",
+    "filepath",
+    "interpolate",
+    "notation",
+    "param",
+    "parameter",
+    "path",
+    "permalink",
+    "placeholder",
+    "prop",
+    "rewrite",
+    "url"
+  ]
 }
