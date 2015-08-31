@@ -46,6 +46,15 @@ describe('placeholders', function () {
     assert(fn('foo/%bar%/%baz%') === 'foo/one/two');
   });
 
+  it('should return a function when no data is passed:', function () {
+    var interpolate = placeholders({regex: /%([^%]+)%/});
+    var fn = interpolate('foo/%bar%/%baz%');
+
+    assert(typeof fn === 'function');
+    assert(fn({bar: 'one', baz: 'two'}) === 'foo/one/two');
+    assert(fn({bar: 'a', baz: 'b'}) === 'foo/a/b');
+  });
+
   it('should extend locals with data passed to the main function:', function () {
     fn = placeholders({regex: /%([^%]+)%/, data: {bar: 'one'}});
     assert(fn('foo/%bar%/%baz%', {baz: 'two'}) === 'foo/one/two');
