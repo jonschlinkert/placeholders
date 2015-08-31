@@ -10,10 +10,14 @@
 var assign = require('assign-deep');
 var expand = require('expand');
 
-module.exports = function placeholders(opts) {
-  opts = assign({ regex: /:([(\w ),]+)/g }, opts);
+module.exports = function placeholders(options) {
+  var opts = assign({ regex: /:([(\w ),]+)/g }, options);
 
-  return function (val, locals) {
+  return function interpolate(val, locals) {
+    if (arguments.length === 1 && !opts.data) {
+      return interpolate.bind(null, val);
+    }
+
     locals = assign({}, opts.data, locals);
     return expand(val, locals, { regex: opts.regex });
   };
