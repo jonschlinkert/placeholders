@@ -11,7 +11,8 @@ var assign = require('assign-deep');
 var expand = require('expand');
 
 module.exports = function placeholders(options) {
-  var opts = assign({ regex: /:([(\w ),]+)/g }, options);
+  var opts = assign({ regex: /:([(\w ),]+)/ }, options);
+  var resolve = expand(opts);
 
   return function interpolate(val, locals) {
     if (arguments.length === 1 && !opts.data) {
@@ -19,6 +20,6 @@ module.exports = function placeholders(options) {
     }
 
     locals = assign({}, opts.data, locals);
-    return expand(val, locals, { regex: opts.regex });
+    return resolve(val, locals);
   };
 };
