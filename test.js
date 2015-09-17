@@ -16,7 +16,21 @@ describe('placeholders', function () {
     assert(fn('foo/:bar', {bar: 'BAZ'}) === 'foo/BAZ');
   });
 
-  it('should replace placeholders in the given string:', function () {
+  it('should replace a placeholder with dot notation:', function () {
+    assert(fn('foo/:bar.baz', {bar: {baz: 'BAZ'}}) === 'foo/BAZ');
+  });
+
+  it('should leave file extensions in tact:', function () {
+    assert(fn('foo/:bar.html', {bar: 'BAZ'}) === 'foo/BAZ.html');
+    assert(fn('foo/:a.b.c.html', {a: {b: {c: 'd'}}}) === 'foo/d.html');
+    assert(fn('foo/:a.b.c.min.js', {a: {b: {c: 'd'}}}) === 'foo/d.min.js');
+  });
+
+  it('should not use dot notation values that are not strings:', function () {
+    assert(fn('foo/:bar.html', {bar: 'BAZ'}) === 'foo/BAZ.html');
+  });
+
+  it('should replace multiple placeholders in the given string:', function () {
     var ctx = {bar: 'one', baz: 'two'};
     assert(fn('foo/:bar/:baz', ctx) === 'foo/one/two');
   });
