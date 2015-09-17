@@ -1,7 +1,7 @@
 {
   "name": "placeholders",
   "description": "Replace placeholder values in a file path.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/jonschlinkert/placeholders",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/placeholders",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "assign-deep": "^0.3.1",
-    "expand": "^0.2.1"
+    "expand": "^0.3.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
