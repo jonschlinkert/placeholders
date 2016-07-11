@@ -49,6 +49,21 @@ describe('placeholders', function() {
     assert(fn('foo/:bar/:baz/:qux:ext(fez)', ctx) === 'foo/one/two/threeFOUR');
   });
 
+  it('should support helper functions using `this`:', function() {
+    var ctx = {
+      path: 'blog/posts/something.md',
+      bar: 'one',
+      baz: 'two',
+      qux: 'three',
+      fez: 'four',
+      ext: 'fez',
+      upper: function(str) {
+        return this[str].toUpperCase();
+      }
+    };
+    assert(fn('foo/:bar/:baz/:qux:upper(ext)', ctx) === 'foo/one/two/threeFOUR');
+  });
+
   it('should use custom regex:', function() {
     fn = placeholders({regex: /%([^%]+)%/});
     var ctx = {bar: 'one', baz: 'two'};
