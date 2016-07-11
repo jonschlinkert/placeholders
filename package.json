@@ -45,5 +45,28 @@
     "prop",
     "rewrite",
     "url"
-  ]
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "assign-deep",
+        "expand"
+      ]
+    },
+    "reflinks": [
+      "verb",
+      "verb-readme-generator"
+    ],
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
 }
